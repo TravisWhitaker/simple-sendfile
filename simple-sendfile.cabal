@@ -31,19 +31,19 @@ Library
     CPP-Options:        -DOS_BSD
     Other-Modules:      Network.Sendfile.BSD
                         Network.Sendfile.IOVec
-    Build-Depends:      unix
+    Build-Depends:      unix >= 2.8
   else
     if os(darwin)
       CPP-Options:      -DOS_MacOS
       Other-Modules:    Network.Sendfile.BSD
                         Network.Sendfile.IOVec
-      Build-Depends:    unix
+      Build-Depends:    unix >= 2.8
     else
       if os(linux)
         CPP-Options:    -DOS_Linux
         Exposed-Modules: System.Linux.Sendfile
         Other-Modules:  Network.Sendfile.Linux
-        Build-Depends:  unix
+        Build-Depends:  unix >= 2.8
       else
         Other-Modules:  Network.Sendfile.Fallback
         Build-Depends:  conduit         >= 1.0 && < 1.4
@@ -69,7 +69,7 @@ Test-Suite spec
                       , network
                       , process
                       , simple-sendfile
-                      , unix
+                      , unix >= 2.8
 
 Source-Repository head
   Type:                 git

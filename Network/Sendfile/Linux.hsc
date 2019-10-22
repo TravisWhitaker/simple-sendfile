@@ -66,14 +66,14 @@ sendfile :: Socket -> FilePath -> FileRange -> IO () -> IO ()
 sendfile sock path range hook = bracket setup teardown $ \fd ->
     sendfileFd sock fd range hook
   where
-    setup = openFd path ReadOnly Nothing defaultFileFlags{nonBlock=True}
+    setup = openFd path ReadOnly defaultFileFlags{nonBlock=True}
     teardown = closeFd
 
 sendfile' :: Fd -> ByteString -> FileRange -> IO () -> IO ()
 sendfile' dst path range hook = bracket setup teardown $ \src ->
     sendfileFd' dst src range hook
   where
-    setup = B.openFd path ReadOnly Nothing defaultFileFlags{nonBlock=True}
+    setup = B.openFd path ReadOnly defaultFileFlags{nonBlock=True}
     teardown = closeFd
 
 -- |
